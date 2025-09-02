@@ -1,0 +1,123 @@
+                              DML TASK
+                            ===========
+
+
+1.Create the EMP6 table and insert the records as below
+
+      EMPNO       ENAME        SAL         JOB                       
+     ------     --------    -------     ---------
+      1001       SURYA        8000       MANAGER
+      1002       KIRAN        6000       SALESMAN 
+      1003      ANUSHKA       3000       CLERK
+      1004      GOWTHAM       7000       SALESMAN
+      1005      PREETHI       4000       CLERK          
+
+QUERY:
+	SQL> CREATE TABLE EMP6(EMPNO NUMBER(4), ENAME CHAR(10), SAL NUMBER(8), JOB VARCHAR2(20));
+	
+	INSERT INTO EMP6 VALUES(1001, 'SURYA', 8000, 'MANAGER');
+	INSERT INTO EMP6 VALUES(1002, 'KIRAN', 6000, 'SALESMAN');
+	INSERT INTO EMP6 VALUES(1003, 'ANUSHKA', 3000, 'CLERK');
+	INSERT INTO EMP6 VALUES(1004, 'GOWTHAM', 7000, 'SALESMAN');
+
+
+2.Set sal as 10000 to an employee whose empno is 1001 
+  from emp6 table?
+QUERY:
+	UPDATE EMP6 SET SAL = 10000 WHERE EMPNO = 1001;
+
+3.Update the job to 'MANAGER' and increase the salary by 2000 rupees for the
+  employee whose employee number is 1004 in the emp6 table.
+QUERY:
+	UPDATE EMP6 SET JOB = 'MANAGER', SAL = SAL + 2000 WHERE EMPNO = 1004;
+
+4.Increase the salary by 2000 for all employees whose job title is 'CLERK' 
+  in the emp6 table
+QUERY:
+	UPDATE EMP6 SET SAL = SAL + 2000 WHERE JOB = 'CLERK';
+
+5.Increase the salary by 1000 rupees for all employees in the emp6 table.
+QUERY:
+	UPDATE EMP6 SET SAL = SAL + 1000;
+
+6.Set the salary to 8500 for employees whose name is GOWTHAM in the emp6 table.
+QUERY:
+	UPDATE EMP6 SET SAL = 8500 WHERE ENAME = 'GOWTHAM';
+
+7.Change the job to PRESIDENT for the employee whose name is ANUSHKA.
+QUERY:
+	UPDATE EMP6 SET JOB = 'PRESIDENT' WHERE ENAME = 'ANUSHKA';
+
+8.Add an ADDRESS COLUMN TO THE EMP6 TABLE ?
+QUERY:
+	ALTER TABLE EMP6 ADD ADDRESS VARCHAR2(20);
+
+9.Set the address to HYD for the employee whose name is ANUSHKA.
+QUERY:
+	UPDATE EMP6 SET ADDRESS = 'HYD' WHERE ENAME = 'ANUSHKA';
+
+10.Set the address as 'AMMERPET' for the employee whose employee number is 1004.
+QUERY:
+	UPDATE EMP6 SET ADDRESS = 'AMMERPET' WHERE EMPNO = 1004;
+
+11.Delete the employee record whose name is PREETHI from the emp6 table.
+QUERY:
+	DELETE FROM EMP6 WHERE ENAME = 'PREETHI';
+
+12.Delete all employee records from the EMP6 table where the salary is
+   less than 6000.
+QUERY:
+	DELETE FROM EMP6 WHERE SAL < 6000;
+
+13.delete all the records from emp6 table ?
+QUERY:
+	DELETE FROM EMP6;
+
+14.What is command to get it back the data after deleting ?
+                      (or)
+   How can we restore the data after performing the delete command? 
+
+QUERY: 
+	ROLLBACK;           ------------(It will get back all rows to table);
+-----------------------------------------------------------------------------------
+ *
+***What are differences b/w delete and truncate?(V.V.I.M.P)
+ *
+NOTE:-2 and 3 point is very important.
+
+===================================================================================
+               TRUNCATE           |               DELETE
+===================================================================================
+1.it is a DDL command.            |1.it is a DML command.
+                                  |
+2.structure is remains same       |2.structure is remains same
+  data is deleted permanently.    |  data is deleted temporally
+                                  |  and storing in a buffer.
+                                  |
+2.it can not be rollback.         |3.it can be rollback.        
+                                  |
+3.it is auto commit command       |3.it is not auto commit command.
+                                  |
+4.Where clause can not be used    |4.Where clause can be used here.
+  here.                           |
+                                  |
+5.We can delete all the records   |5.Using it we can delete single or
+  only.we can not delete single   |  specific group of records or all 
+  or specific group of records.   |  records.
+                                  |
+6.it is faster.                   |6.it is slower.
+                                  |
+7.Deletes data block by block.    | 7.Deletes data row by row.
+                                  |
+                                  |
+===============================*********===========================================
+
+
+
+
+
+
+
+
+
+
