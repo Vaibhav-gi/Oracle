@@ -1,0 +1,122 @@
+                              TCL COMMANDS
+                            ===============
+                             
+
+1.create a table with sno, sname column
+QUERY:	
+	CREATE TABLE STUDENT2 (SNO NUMBER(3), SNAME VARCHAR2(20));
+
+---->after creating the table insert 3 records
+QUERY:	
+	INSERT INTO STUDENT2 VALUES(1, 'GOWTHAM');
+	INSERT INTO STUDENT2 VALUES(2, 'KAVYA');
+	INSERT INTO STUDENT2 VALUES(3, 'PREETHI')
+
+---->Then use commit command to save the data permanetly in harddisk. 
+QUERY:
+	COMMIT;
+
+---->again insert 2 records
+QUERY: 
+	INSERT INTO STUDENT2 VALUES(4, 'SAMEER');
+	INSERT INTO STUDENT2 VALUES(5, 'JOHN');
+
+---->set the savepoint with name p1
+QUERY:
+	SAVEPOINT P1;
+
+---->again insert 2 records 
+QUERY:
+ 	INSERT INTO STUDENT2 VALUES(6, 'ANUSHKA');
+	INSERT INTO STUDENT2 VALUES(7, 'SHWETA');
+
+---->set the savepoint with name p2
+QUERY:
+	SAVEPOINT P2;
+
+---->again insert 2 records 
+QUERY:
+	INSERT INTO STUDENT2 VALUES(8, 'RASHI');
+	INSERT INTO STUDENT2 VALUES(9, 'JACK');
+
+---->perform rollback to p2;
+QUERY:
+	ROLLBACK TO P2;
+
+---->see the output
+OUTPUT:
+	 SNO SNAME
+---------- --------------------
+         1 GOWTHAM
+         2 KAVYA
+         3 PREETHI
+         4 SAMEER
+         5 JOHN
+         6 ANUSHKA
+         7 SHWETA
+
+---->perform rollback to p1;
+QUERY:
+	ROLLBACK TO P1;
+
+---->see the output
+OUTPUT:
+	SNO SNAME
+---------- --------------------
+         1 GOWTHAM
+         2 KAVYA
+         3 PREETHI
+         4 SAMEER
+         5 JOHN
+
+---->perform rollback;
+QUERY:
+	ROLLBACK;
+
+Then see the output 
+OUTPUT: 
+	SNO SNAME
+---------- --------------------
+         1 GOWTHAM
+         2 KAVYA
+         3 PREETHI
+-----------------------------------------------------------------------------------
+THESE 2 TABLES ARE REQUIRED FOR TOMMORROW OPERATORS TASK CREATE AS IT IS.
+
+1.create the student1 table and insert the records as below.
+
+  SNO      SNAME      SUB1         SUB2        SUB3 
+  -----    -------    ------       ------      ------  
+    1      GOWTHAM      72           18          24
+    2       KAVYA       60           50          45
+    3      PREETHI      12           30          25
+    4       KIRAN       80           88          74
+
+QUERY:
+	CREATE TABLE STUDENT1 (SNO NUMBER(2), SNAME CHAR(10), SUB1 NUMBER(3), SUB2 NUMBER(3), SUB3 NUMBER(3));
+
+	INSERT INTO STUDENT1 VALUES(1, 'GOWTHAM', 72, 18, 24);
+	INSERT INTO STUDENT1 VALUES(2, 'KAVYA', 60, 50, 45);
+	INSERT INTO STUDENT1 VALUES(3, 'PREETHI', 12, 30, 25);
+	INSERT INTO STUDENT1 VALUES(4, 'KIRAN', 80, 88, 74);
+
+2.create the laptops table and insert the records as below.
+
+EG:-Online shopping(searching for the products)
+
+
+    LAPTOP_ID        BRAND           PRICE          MFD
+    ---------      ----------      ----------     ---------
+       1              HP             68000        24-DEC-23
+       2             DELL            50000        12-AUG-24
+       3            LENOVO           40000        12-JAN-23
+       4              HP             44000        08-APR-22
+
+
+QUERY: 
+	CREATE TABLE LAPTOPS(LAPTOP_ID NUMBER(4), BRAND VARCHAR2(10),PRICE NUMBER(10),MFD DATE);
+
+	INSERT INTO LAPTOPS VALUES(1, 'HP',68000, '24-DEC-2023');
+	INSERT INTO LAPTOPS VALUES(2, 'DELL',50000, '12-AUG-24');
+	INSERT INTO LAPTOPS VALUES(3, 'LENOVO',40000, '12-JAN-23');
+	INSERT INTO LAPTOPS VALUES(4, 'HP',44000, '08-APR-22');
