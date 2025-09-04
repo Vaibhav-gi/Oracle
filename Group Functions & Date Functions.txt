@@ -1,0 +1,200 @@
+                       GROUP FUNCTIONS Task
+                    =========================
+
+     oracle having following group functions.
+These are
+1)max()
+2)min()
+3)avg()
+4)sum()
+5)count(*)
+6)count(columnname)
+
+       all group functions are operate over no of values in a 
+table column and then returns single value.
+
+
+-----------------------------------------------------------------------------------------
+
+1.Write a query to display total salary from emp table?
+QUERY:
+	SELECT SUM(SAL) AS TOTAL_SALARY FROM EMP; 
+
+2.Write a query to display total salaries of all managers
+  from emp table?
+QUERY:
+	SELECT SUM(SAL) AS TOTAL_SALARY FROM EMP WHERE JOB='MANAGER';
+
+3.Write a query to display total salaries of 10,30 departments 
+  from table?
+QUERY:
+	SELECT SUM(SAL) AS TOTAL_SALARY FROM EMP WHERE DEPTNO IN(10,30);
+
+4.Write a query to display average salary of all employees from emp table?
+QUERY:	
+	SELECT AVG(SAL) AS AVERAGE_SALARY FROM EMP;
+
+5.Write a query to display average salary of all clerks
+  from emp table?
+QUERY:
+	SELECT AVG(SAL) AS AVG_SAL_OF_CLERKS FROM EMP WHERE JOB = 'CLERK';
+
+6.Write a query to display minimum salary from emp table? 
+QUERY:
+	SELECT MIN(SAL) AS MINIMUM_SALARY FROM EMP;
+
+7.Write a query to display maximum salary from emp table?
+QUERY:
+	SELECT MAX(SAL) AS MAXIMUM_SALARY FROM EMP;
+
+8.Write a query to display maximum and minimum salary from emp table?
+QUERY:
+	SELECT MAX(SAL) AS MAX_SAL, MIN(SAL) AS MIN_SAL FROM EMP;
+
+9.Write a query to display the total no of employees in emp table?
+QUERY:
+	SELECT COUNT(*) FROM EMP;
+
+10.Write a query to display the no of managers in emp table?
+QUERY:
+	SELECT COUNT(*) FROM EMP WHERE JOB='MANAGER';
+
+11.Write a query to display the no of employees in 10,30 
+   departments from emp table?
+QUERY:
+	SELECT COUNT(*) FROM EMP WHERE DEPTNO IN(10,30);
+
+12.Write a query to display the no of employees in 4th quarter
+   from emp table?
+QUERY:
+	SELECT COUNT(*) FROM EMP WHERE TO_CHAR(HIREDATE,'Q')='4';
+
+Count(column name):- It counts number of not null values within
+==================      a column. 
+
+
+13.Write a query to display how many employees are
+   getting commission from emp table?
+QUERY:
+	SELECT COUNT(DISTINCT COMM) FROM EMP;
+
+14.What is the output of the following statement
+
+select Max(100,200) from dual;
+
+A. 100  
+   
+B. 100,200
+
+C. 200       
+    
+D. Error
+
+
+Answer: D. Error
+
+
+
+15.A table T_COUNT has 12 number values as 1,2,3,32,1,1,null,
+   24,12,null,null,32
+
+predict the output of the below query
+
+select count(*) from T_count;
+
+A. 6
+
+B. 12            
+    
+C. 9
+
+D. Throws exception because COUNT function doesn't work with null values
+
+
+Answer: B. 12
+-----------------------------------------------------------------------------------------
+                              Date Functions Task
+                            ========================
+
+DATE FUNCTIONS:-In oracle by default date format is DD-MON-YY
+==============
+
+   oracle having following predefined date functions.these
+are
+
+1.sysdate
+2.systimestamp
+3.add_months()
+4.last_day()
+5.next_day()
+6.months_between()
+
+
+1.Write a query to display current system date?
+QUERY:
+	SELECT SYSDATE FROM DUAL;
+
+2.Write query to display the current system date and time?
+
+systimestamp:-it returns current date of the system and time
+
+QUERY:
+	SELECT SYSTIMESTAMP FROM DUAL;
+
+SYSTIMESTAMP
+-------------------------------------
+04-SEP-25 03.36.06.704000 PM +05:30
+
+
+3.Write a query to display last date of the current month?
+QUERY:
+	SELECT LAST_DAY(SYSDATE) FROM DUAL;
+
+4.Write a query to display last date of the month from the
+  given date 16-APR-2024?
+QUERY:
+	SELECT LAST_DAY(TO_DATE('16-APR-2024','DD-MON-YYYY')) FROM DUAL;
+			OR
+	SELECT LAST_DAY('16-APR-2024') FROM DUAL;
+
+5.Write a query to display next month first date?
+QUERY: 
+	SELECT LAST_DAY(SYSDATE)+1 FROM DUAL;
+
+6.Write a query to display first date of the current month by using 
+  sysdate,add_months(),last_day() functions?
+QUERY:
+	SELECT LAST_DAY(ADD_MONTHS(SYSDATE,-1))+1 FROM DUAL;
+
+7.Write a query to display next Friday's date?
+QUERY:
+	SELECT NEXT_DAY(SYSDATE,'FRIDAY') FROM DUAL;
+
+8.Write a query to display next month first sunday date?
+QUERY:
+	SELECT NEXT_DAY(ADD_MONTHS(SYSDATE,1),'SUNDAY') FROM DUAL;
+
+9.Write a query which is used to display employee names and also number of years 
+  those employees are working upto today's date from emp table
+  by using months_between() function?
+QUERY:
+	SELECT ENAME,TRUNC(MONTHS_BETWEEN(SYSDATE,HIREDATE)/12) AS YEARS FROM EMP;
+
+10.Calulate age( in the form of years and months) of kiran. if dob of
+   kiran is 31-DEC-1996?
+QUERY:
+	SELECT TRUNC(MONTHS_BETWEEN(SYSDATE,'31-DEC-1996')/12) AS YEARS, TRUNC(MOD(MONTHS_BETWEEN(SYSDATE,'31-DEC-1996'),12)) AS MONTHS FROM DUAL;
+				OR
+SELECT TRUNC(MONTHS_BETWEEN(SYSDATE,TO_DATE('31-DEC-1996','DD-MON-YYYY'))/12) AS YEARS,
+       TRUNC(MOD(MONTHS_BETWEEN(SYSDATE,TO_DATE('31-DEC-1996','DD-MON-YYYY')),12)) AS MONTHS
+FROM DUAL;
+
+OUTPUT:-
+======
+
+       YEARS      MONTHS
+     --------    --------
+        28          8
+
+
+
