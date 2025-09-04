@@ -26,46 +26,57 @@ position onwards.
 
 SQL> select instr('ABC*D','*') from dual; // it returns the position of the 
                                             delemiters(special characters)
+->	4
 
 SQL> select instr('ABCDEFGHCDKMNBCDJ','CD',1,1) from dual;
 
+->	3
 
 SQL> select instr('ABCDEFGHCDKMNBCDJ','CD',5,2) from dual;
 
+->	15
 
 SQL> select instr('ABCDEFGHCDKMNBCDJ','CD',-5,2) from dual;
 
+->	3
 
 SQL> select instr('krishna stami lord krishna jai krishna',
                  'krishna',1,2) from dual;
 
-
+->	20
 
 SQL> select instr('krishna stami lord krishna jai krishna',
                   'krishna',-1,3) from dual;
 
+->	1
 
 SQL> select instr('gowtham raj','raj') from dual;
 
+->	9
 
 
 SQL> select instr('gowtham raj','sai') from dual;
 
+->	0
 
 2.Write an query using the INSTR function to check whether the substring 'radha' 
   is exists in the given string or not
 
 Given string: krishna stami lord krishna jai krishna
 
-
+QUERY:
+	SELECT INSTR('krishna stami lord krishna jai krishna','radha') FROM DUAL;
 
 3.Find 4th apperence of 'a' in the string 'Maharashtraa'[INTERVIEW QUESTION]
-
-
+QUERY:
+	SELECT INSTR('Maharashtra','a',1,4) AS APPERENCE FROM DUAL;
 
 4.Write a query which is used to retrieve first part(before first .)
   from the MAILID column in the EMAILS table by using
   substr(),instr() functions 
+QUERY:
+	SELECT SUBSTR(MAILID,1,INSTR(MAILID,'.')-1) FROM EMAILS;
+
 
 create table emails
 (
@@ -102,23 +113,37 @@ string by string.
 SQL> select translate('india','in','xy'),replace('india','in','xy')
      from dual;
 
+->	TRANS REPLA
+	----- -----
+	xydxa xydia
+
 SQL> select translate('JOHN','H','N') from dual;
 
+->	JONN
 
 SQL> select replace('JOHN','H','N') from dual;
 
+-> 	JONN
 
 SQL> select translate('JOHN','H','AMMERPET') from dual;
 
+->	JOAN
 
 SQL> select replace('JOHN','H','AMMERPET') from dual;
 
+->	JOAMMERPETN
 
 SQL> select translate('ABCDEF','FEDCBA','123456') from dual;
 
+->	TRANSL
+	------
+	654321
 
 SQL> select replace('A B C',' ','india')from dual;
 
+->	REPLACE('ABC'
+	-------------
+	AindiaBindiaC
 
 Note: in oracle whenever we are not using specifying third parameter
 ====  then specified character or specified string in 2nd parameter
@@ -127,6 +152,12 @@ Note: in oracle whenever we are not using specifying third parameter
 
 SQL> select replace('SSMISSTHSS','S') from dual;
 
+->	REPL
+	----
+	MITH
 
 SQL> select replace('SSMISSTHS','THS') from dual;
 
+->	REPLAC
+	------
+	SSMISS
