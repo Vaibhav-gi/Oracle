@@ -172,7 +172,7 @@ QUERY:
 
 8.Write a query to display next month first sunday date?
 QUERY:
-	SELECT NEXT_DAY(ADD_MONTHS(SYSDATE,1),'SUNDAY') FROM DUAL;
+	SELECT NEXT_DAY(LAST_DAY(SYSDATE),'SUNDAY') FROM DUAL;
 
 9.Write a query which is used to display employee names and also number of years 
   those employees are working upto today's date from emp table
