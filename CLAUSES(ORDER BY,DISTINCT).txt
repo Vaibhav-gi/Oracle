@@ -1,0 +1,144 @@
+                                 ORDER BY CLAUSE
+                                ==================
+
+Order by:-order by clause is used to sorting data either ascending 
+========  order or descending order.
+     
+order by clause having two keywords.
+1)asc
+2)desc
+
+syntax:-
+=======
+    select * from tablename
+    order by columnname[asc/desc];
+
+
+
+1.Write a query to display the names and salaries of employees,sorted by salary 
+  in descending order from EMP table?
+QUERY:
+	SELECT ENAME,SAL FROM EMP ORDER BY SAL DESC;
+
+2.Write a query to display all employee names in alphabetical order ?
+QUERY:
+	SELECT ENAME FROM EMP ORDER BY ENAME;
+
+3.Write a query to display the all employee records and arrange them according to
+  seniority ?
+QUERY:
+	SELECT ENAME, HIREDATE FROM EMP ORDER BY HIREDATE;
+
+4.Display the employee records arrange them in ascending order according
+  to department, If multiple employees are in the same department ,sort
+  them by salary in descending order with in the department.
+QUERY:
+	SELECT ENAME, DEPTNO,SAL FROM EMP  ORDER BY DEPTNO,SAL DESC;
+
+5.Check the following order by clause outputs
+
+1)SQL>select ename,comm 
+         from emp
+         order by comm desc;
+
+2)SQL>select ename,comm
+     from emp
+     order by comm desc nulls last;
+
+-----------------------------------------------------------------------------------
+
+CREATE TABLE EMP444 
+(
+EMPID NUMBER(10),
+EMP_FIRST_NAME VARCHAR2(15),
+EMP_LAST_NAME VARCHAR2(15),
+BIRTHDATE DATE
+);
+
+INSERT INTO EMP444 VALUES(1,'john','doe','23-apr-1985');
+INSERT INTO EMP444 VALUES(2,'jill','davis','15-jun-1999');
+INSERT INTO EMP444 VALUES(3,'jack','johnson','25-oct-1992');
+INSERT INTO EMP444 VALUES(4,'james','willson','12-sep-1983');
+
+
+
+CREATE TABLE EMP333
+(
+ID NUMBER(5),
+FIRSTNAME VARCHAR2(10),
+LASTNAME VARCHAR2(10),
+AGE NUMBER(4)
+);
+
+INSERT INTO EMP333 VALUES(1,'John','Smith',20);
+INSERT INTO EMP333 VALUES(2,'Jenny','Richards',28);
+INSERT INTO EMP333 VALUES(3,'Alice','Smith',15);
+INSERT INTO EMP333 VALUES(4,'Noah','Fritz',30);
+INSERT INTO EMP333 VALUES(5,'Mark','Smith',12);
+
+commit;
+
+
+SQL>select * from emp444;
+
+emp_id        emp_first_name        emp_last_name      birthdate
+------      -----------------     --------------      ------------
+  1            john                  doe               23-apr-1985
+  2            jill                  davis             15-jun-1999
+  3            jack                  Johnson           25-oct-1992
+  4            james                 Wilson            12-sep-1983
+
+
+6.Write the query to display the emp_first_name and emp_last_name 
+  as emp_fullname and year of birth and sort them based on their
+  desending age.[INTERVIEW QUESTION]
+
+NOTE:-By default Calender order is ascending order
+
+QUERY:
+	SELECT EMP_FIRST_NAME || '' || EMP_LAST_NAME AS EMP_FULL_NAME ,TO_CHAR	(BIRTHDATE,'YYYY') AS YEAR FROM EMP444 ORDER BY BIRTHDATE ;
+
+
+7.Show all the jobs in the EMP table?
+QUERY:
+	SELECT JOB FROM EMP;
+
+8.Write a query to list all unique departments numbers from EMP table ?
+QUERY:
+	SELECT DISTINCT DEPTNO FROM EMP;
+
+9.Write a query to display FirstName,LastName and Age from the table emp333
+  table for all users who are above the age of 25 order by ID in ascending
+  order,your output should look like the following[INTERVIEW QUESTION]
+
+EXPECTED OUTPUT:-
+================
+
+       FIRSTNAME       LASTNAME         AGE
+      ----------      -----------     ------
+         Jenny          Richards        28
+         Noah           Fritz           30
+
+QUERY:
+	SELECT FIRSTNAME, LASTNAME, AGE FROM EMP333 WHERE AGE > 25 ORDER BY ID ;
+
+10.Write a query display LastName and the sum of Age from the emp333 table
+   for all users with a LastName='Smith'.The column title of the summed ages
+   should be SUMAGE.your output should look like the following[INTERVIEW QUESTION] 
+
+EXPECTED OUTPUT:-
+================
+
+           LASTNAME        SUMAGE
+          ----------     ---------
+            Smith            47
+
+QUERY:
+	SELECT LASTNAME, SUM(AGE) AS SUMAGE FROM EMP333 WHERE LASTNAME = 'Smith' 	GROUP BY LASTNAME;  
+               
+
+
+  
+
+
+
